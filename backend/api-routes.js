@@ -1,11 +1,9 @@
 import { Router } from "express";
+import path from "path";
 const router = Router();
 // Set default API response
 router.get("/", (req, res) => {
-  res.json({
-    status: "API Its Working",
-    message: "Welcome to my API!",
-  });
+  res.send("test");
 });
 
 import {
@@ -22,7 +20,6 @@ router
   .route("/contacts/:contact_id")
   .get(viewContact)
   .patch(updateContact)
-  .put(updateContact)
   .delete(deleteContact);
 
 // Export API routes

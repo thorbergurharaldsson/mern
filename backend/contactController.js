@@ -20,22 +20,33 @@ export const indexContacts = (req, res) => {
 
 // Handle Create contact actions
 export const newContact = (req, res) => {
-  console.log(req.body);
   const contact = new Contact();
-  contact.name = req.body.name ? req.body.name : contact.name;
+  contact.name = req.body.name;
   contact.gender = req.body.gender;
   contact.email = req.body.email;
   contact.phone = req.body.phone;
-  // save the contact and check for errors
-  contact.save((err) => {
-    // Check for validation error
-    if (err) res.json(err);
-    else
-      res.json({
-        message: "New contact created!",
-        data: contact,
-      });
-  });
+
+  if (!contact.name) {
+    res.status(400).json({
+      message: "'name' is required",
+    });
+  }
+  if (!contact.email) {
+    res.status(400).json({
+      message: "'email' is required",
+    });
+  } else {
+    // save the contact and check for errors
+    contact.save((err) => {
+      // Check for validation error
+      if (err) res.json(err);
+      else
+        res.json({
+          message: "New contact created!",
+          data: contact,
+        });
+    });
+  }
 };
 
 // Handle view contact info

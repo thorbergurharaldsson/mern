@@ -36,15 +36,7 @@ app.use(bodyParser.json());
 
 app.use("/api", router);
 app.get("/", (req, res) => {
-  res.send("Hello World with Express");
-  // //Connect to db and send data
-  // client.connect(async (err) => {
-  //   // get collection
-  //   const collection = client.db("contacts").collection("contacts");
-  //   // find data in collection
-  //   const data = await collection.find().toArray();
-  //   res.send(JSON.stringify(data));
-  // });
+  res.send("");
 });
 
 app.listen(PORT, () => {

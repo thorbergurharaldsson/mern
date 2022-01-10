@@ -1,11 +1,11 @@
-import { React } from "react";
+import React from "react";
+import ContactTable from "./components/ContactTable";
 
 const App = () => {
   return (
-    <div>
-      <h1>Hello This is test</h1>
-      <p>Testing testing testing testing</p>
-    </div>
+    <>
+      <ContactTable />
+    </>
   );
 };
 
