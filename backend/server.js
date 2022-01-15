@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import Mongoose from "mongoose";
+import { xss } from "express-xss-sanitizer";
 
 const app = express();
 
@@ -11,11 +12,12 @@ const PORT = 8080; //we will use port 8080
 
 import router from "./api-routes.js";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 // Connecting to mongoDB with mongoose
-const uri =
-  "mongodb+srv://torbergur:12345@merntest.gferf.mongodb.net/contacts?retryWrites=true&w=majority";
 Mongoose.connect(
-  uri,
+  process.env.DATABASE_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -27,6 +29,8 @@ Mongoose.connect(
 
 app.use(cors()); //telling express to use the cors middleware
 
+app.use(xss()); //telling express to use xss sanitizer to sanitise all incoming requests
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -35,9 +39,6 @@ app.use(
 app.use(bodyParser.json());
 
 app.use("/api", router);
-app.get("/", (req, res) => {
-  res.send("");
-});
 
 app.listen(PORT, () => {
   //listen to the port we chose above

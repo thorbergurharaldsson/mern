@@ -1,9 +1,8 @@
 import { Router } from "express";
-import path from "path";
 const router = Router();
 // Set default API response
 router.get("/", (req, res) => {
-  res.send("test");
+  res.send("Welcome to this API");
 });
 
 import {
