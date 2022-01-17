@@ -1,4 +1,6 @@
 import { useState, React } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 import "./editContact.css";
 
@@ -83,12 +85,19 @@ const EditContact = (props) => {
 
   return (
     <>
+      <FontAwesomeIcon
+        icon={faEdit}
+        className="icon"
+        onClick={() => {
+          openModal();
+        }}
+      />
       <Modal
-        active={props.active}
+        active={showModal}
         func={closeModal}
         name={props.name}
         email={props.email}
-        phone={props.email}
+        phone={props.phone}
         id={props.id}
       />
     </>

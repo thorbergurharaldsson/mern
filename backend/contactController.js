@@ -81,7 +81,7 @@ export const updateContact = (req, res) => {
 
 // Handle delete contact
 export const deleteContact = (req, res) => {
-  Contact.remove(
+  Contact.deleteOne(
     {
       _id: req.params.contact_id,
     },

@@ -1,6 +1,6 @@
 import { useEffect, useState, React } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 import apiconnection from "../../apiconnection";
 import "./index.css";
@@ -12,12 +12,6 @@ const ContactTable = () => {
   const [DisplayData, setDisplayData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [contactID, setContactID] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [editModal, setEditModal] = useState(false);
-
   useEffect(() => {
     const apiRes = apiconnection;
     setApi(apiRes);
@@ -26,6 +20,7 @@ const ContactTable = () => {
         // sort alphabetically by name
         res.sort((a, b) => {
           if (a.name < b.name) {
+            console.log("this is happening");
             return -1;
           }
           if (a.name > b.name) {
@@ -64,16 +59,11 @@ const ContactTable = () => {
                         window.location.reload(false);
                       }}
                     />
-                    <FontAwesomeIcon
-                      icon={faEdit}
-                      className="icon"
-                      onClick={() => {
-                        setContactID(info.id);
-                        setName(info.name);
-                        setEmail(info.email);
-                        setPhone(info.phone);
-                        setEditModal(true);
-                      }}
+                    <EditContact
+                      id={info._id}
+                      name={info.name}
+                      email={info.email}
+                      phone={info.phone}
                     />
                   </>
                 }
@@ -88,7 +78,7 @@ const ContactTable = () => {
       )
     );
     setLoading(false);
-  }, [contacts, editModal]);
+  }, [contacts]);
 
   if (loading) return "loading...";
 
@@ -105,13 +95,6 @@ const ContactTable = () => {
         </thead>
         <tbody>{DisplayData}</tbody>
       </table>
-      <EditContact
-        id={contactID}
-        name={name}
-        email={email}
-        phone={phone}
-        active={editModal}
-      />
     </>
   );
 };

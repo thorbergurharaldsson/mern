@@ -80,7 +80,7 @@ const AddContact = () => {
 
   return (
     <>
-      <button onClick={openModal} className="btn">
+      <button onClick={openModal} className="btn" id="addContactBtn">
         Add contact
       </button>
       <Modal active={showModal} func={closeModal} />

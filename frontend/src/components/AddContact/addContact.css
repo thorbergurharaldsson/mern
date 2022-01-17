@@ -52,3 +52,7 @@ input {
   margin-bottom: 16px;
   resize: vertical;
 }
+
+#addContactBtn {
+  margin-bottom: 50px;
+}
