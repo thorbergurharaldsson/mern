@@ -14,7 +14,7 @@ const Modal = (props) => {
       phone: phone,
     });
 
-    fetch("http://localhost:8080/api/contacts", {
+    fetch("http://mernbackend.thorbergur.me:3450/api/contacts", {
       method: "POST",
       body: data,
     });

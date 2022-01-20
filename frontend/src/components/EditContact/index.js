@@ -16,7 +16,7 @@ const Modal = (props) => {
       phone: phone,
     });
 
-    fetch(`http://localhost:8080/api/contacts/${props.id}`, {
+    fetch(`http://mernbackend.thorbergur.me:3450/api/contacts/${props.id}`, {
       method: "PATCH",
       body: data,
     });

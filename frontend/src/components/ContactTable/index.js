@@ -20,7 +20,6 @@ const ContactTable = () => {
         // sort alphabetically by name
         res.sort((a, b) => {
           if (a.name < b.name) {
-            console.log("this is happening");
             return -1;
           }
           if (a.name > b.name) {
@@ -34,7 +33,7 @@ const ContactTable = () => {
   }, [api]);
 
   const deleteContact = (id) => {
-    fetch(`http://localhost:8080/api/contacts/${id}`, {
+    fetch(`http://mernbackend.thorbergur.me:3450/api/contacts/${id}`, {
       method: "DELETE",
     });
   };
